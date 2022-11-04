@@ -131,7 +131,7 @@ public class CSV_READER {
                     Movies.add(newMovie);
                 }
             }catch(Exception e){
-                e.toString();
+                e.printStackTrace();
             }
             ReadList();
         }catch(Exception e){
