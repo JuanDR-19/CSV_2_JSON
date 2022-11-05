@@ -83,6 +83,7 @@ public class CSV_READER {
                         }else{
                             Actors.add(Actor);
                         }
+
                         Genres=null;
 
                     } else {
