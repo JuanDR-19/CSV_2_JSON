@@ -98,7 +98,6 @@ public class CSV_READER {
                 e.printStackTrace();
             }
             JW.write(File_data);
-            //ReadList();
             //System.out.println(File_data.size());
             JW.JSONEnder();
 
