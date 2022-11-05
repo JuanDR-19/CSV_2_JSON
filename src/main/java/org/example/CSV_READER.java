@@ -139,7 +139,6 @@ public class CSV_READER {
                     Gson gson = new Gson();
                     String JSON = gson.toJson(newMovie);
                     JW.write(JSON);
-
                 }
             }catch(Exception e){
                 e.printStackTrace();
