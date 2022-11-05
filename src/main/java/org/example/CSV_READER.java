@@ -17,7 +17,6 @@ public class CSV_READER {
     private String line=null;
 
     private List<String> parts = new ArrayList<>();
-    private List<Movie> Movies = new ArrayList<>();
     private List<String> contents = new ArrayList<>();
     private List<String> File_data = new ArrayList<>();
     private JSONwriter JW = new JSONwriter();
@@ -91,7 +90,6 @@ public class CSV_READER {
                         }
 
                     Movie newMovie = new Movie(MovID, Name, Screenwriter, Subjects, Directors, Actors, Genres);
-                    Movies.add(newMovie);
                     Gson gson = new Gson();
                     String JSON = gson.toJson(newMovie);
                     File_data.add(JSON);
@@ -101,7 +99,7 @@ public class CSV_READER {
             }
             JW.write(File_data);
             //ReadList();
-            System.out.println(Movies.size());
+            //System.out.println(File_data.size());
             JW.JSONEnder();
 
         }catch(Exception e){
@@ -109,9 +107,5 @@ public class CSV_READER {
         }
 
     }
-    private void ReadList(){
-        for(Movie m : Movies){
-            System.out.println(m.toString());
-        }
-    }
+
 }
