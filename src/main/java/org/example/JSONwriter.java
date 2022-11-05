@@ -15,6 +15,7 @@ public class JSONwriter {
     public void write(String JSON){
         try {
             out.write(JSON);
+            out.write(",");
             out.write("\n");
         } catch (Exception e) {
             e.printStackTrace();
