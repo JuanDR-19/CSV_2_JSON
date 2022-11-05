@@ -103,6 +103,7 @@ public class CSV_READER {
             //ReadList();
             System.out.println(Movies.size());
             JW.JSONEnder();
+
         }catch(Exception e){
             e.printStackTrace();
         }

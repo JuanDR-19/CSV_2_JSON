@@ -28,7 +28,6 @@ public class JSONwriter {
             }
         }
     }
-
     public void JSONEnder(){
         out.write("]");
     }
