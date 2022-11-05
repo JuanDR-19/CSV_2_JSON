@@ -19,6 +19,7 @@ public class CSV_READER {
     private List<String> parts = new ArrayList<>();
     private List<Movie> Movies = new ArrayList<>();
     private List<String> contents = new ArrayList<>();
+    private List<String> File_data = new ArrayList<>();
     private JSONwriter JW = new JSONwriter();
 
 
@@ -40,53 +41,7 @@ public class CSV_READER {
                     List<String> Actors = new ArrayList<>();
                     List<String> Genres = new ArrayList<>();
                     String Name = null;
-
-                    contents = Arrays.asList(part.split(","));
-
-                    //System.out.println(contents.size());
-                    if (contents.size() != FILE_SIZE) {
-                        MovID = Integer.valueOf(contents.get(0));
-                        Name = contents.get(1);
-                        String linea = contents.get(2);
-
-                        if(linea.contains(ListSplitter)){
-                            Screenwriter = List.of(linea.split(ListSplitter));
-                        }else if(linea.isEmpty()){
-                            Screenwriter=null;
-                        }else {
-                            Screenwriter.add(linea);
-                        }
-
-                        String Subject = contents.get(3); //list
-                        if(Subject.contains(ListSplitter)){
-                            Subjects = List.of(Subject.split(ListSplitter));
-                        }else if(Subject.isEmpty()){
-                            Subjects=null;
-                        }else{
-                            Subjects.add(Subject);
-                        }
-
-                        String Director = contents.get(4); //list
-                        if(Director.contains(ListSplitter)){
-                            Directors = List.of(Director.split(ListSplitter));
-                        }else if(Director.isEmpty()){
-                            Directors=null;
-                        }else{
-                            Directors.add(Director);
-                        }
-
-                        String Actor = contents.get(5); //list
-                        if(Actor.contains(ListSplitter)){
-                                Actors = List.of(Actor.split(ListSplitter));
-                        }else if(Actor.isEmpty()){
-                            Actors=null;
-                        }else{
-                            Actors.add(Actor);
-                        }
-
-                        Genres=null;
-
-                    } else {
+                    contents = Arrays.asList(part.split(",",FILE_SIZE));
                         MovID = Integer.valueOf(contents.get(0));
                         Name = contents.get(1);
 
@@ -134,16 +89,17 @@ public class CSV_READER {
                         }else{
                             Genres.add(Subject);
                         }
-                    }
+
                     Movie newMovie = new Movie(MovID, Name, Screenwriter, Subjects, Directors, Actors, Genres);
                     Movies.add(newMovie);
                     Gson gson = new Gson();
                     String JSON = gson.toJson(newMovie);
-                    JW.write(JSON);
+                    File_data.add(JSON);
                 }
             }catch(Exception e){
                 e.printStackTrace();
             }
+            JW.write(File_data);
             //ReadList();
             System.out.println(Movies.size());
             JW.JSONEnder();
