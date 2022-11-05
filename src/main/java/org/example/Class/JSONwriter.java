@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Class;
 
 
 import java.io.File;
@@ -8,14 +8,14 @@ import java.io.PrintWriter;
 import java.util.List;
 
 public class JSONwriter {
-    private static final String PATH = "/Users/juanmanuelduran/Desktop/Movies/DescripcionPeliculas";
+    private static final String PATH = "/Users/juanmanuelduran/Desktop/Movies/";
     private static final String EXTENTION = ".JSON";
     private PrintWriter out;
 
 
 
-    public JSONwriter(int file) throws IOException {
-        this.out= new PrintWriter(new FileWriter(PATH+file+EXTENTION));
+    public JSONwriter(int file,String File_name) throws IOException {
+        this.out= new PrintWriter(new FileWriter(PATH+file+File_name+EXTENTION));
         out.write("[\n");
     }
 

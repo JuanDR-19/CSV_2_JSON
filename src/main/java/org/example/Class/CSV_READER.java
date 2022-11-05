@@ -1,6 +1,7 @@
-package org.example;
+package org.example.Class;
 
 import com.google.gson.Gson;
+import org.example.Interfaces.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,10 +9,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-public class CSV_READER {
+public class CSV_READER implements MoviesInterface, RatingsInterface{
 
     private static final String LIST_SPLITTER="!";
-    private static final int FILE_SIZE=7;
+    private static final int FILE_SIZE_MOVIES=7;
+    private static final int FILE_SIZE_RATINGS=4;
+    private static final String DESCRIPTION = "DescripcionPeliculas";
+    private static final String RATING = "RatingFiltrado";
     private String line=null;
 
     private List<String> parts = new ArrayList<>();
@@ -24,7 +28,7 @@ public class CSV_READER {
     public void readFileMovies(String path) throws IOException {
         int count=0;
         int file=0;
-        JSONwriter jw= new JSONwriter(file);
+        JSONwriter jw= new JSONwriter(file,DESCRIPTION);
         try (BufferedReader in = new BufferedReader(new FileReader(path))) { //filename in()
 
             while((line=in.readLine())!=null){
@@ -39,7 +43,7 @@ public class CSV_READER {
                     List<String> Actors = new ArrayList<>();
                     List<String> Genres = new ArrayList<>();
                     String Name = null;
-                    contents = Arrays.asList(part.split(",",FILE_SIZE));
+                    contents = Arrays.asList(part.split(",",FILE_SIZE_MOVIES));
                     MovID = Integer.valueOf(contents.get(0));
                     Name = contents.get(1);
 
@@ -87,6 +91,7 @@ public class CSV_READER {
                     }else{
                         Genres.add(Subject);
                     }
+
                     Movie newMovie = new Movie(MovID, Name, Screenwriter, Subjects, Directors, Actors, Genres);
                     Gson gson = new Gson();
                     String JSON = gson.toJson(newMovie);
@@ -95,7 +100,7 @@ public class CSV_READER {
                         jw.JSONEnder();
                         count=0;
                         file++;
-                        jw= new JSONwriter(file);
+                        jw= new JSONwriter(file,DESCRIPTION);
                     }
                     jw.write(JSON);
                 }
@@ -103,6 +108,43 @@ public class CSV_READER {
                 e.printStackTrace();
             }
 
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void readFileRating(String path) throws IOException {
+        int count=0;
+        int file=0;
+        JSONwriter jw= new JSONwriter(file,DESCRIPTION);
+        try (BufferedReader in = new BufferedReader(new FileReader(path))) { //filename in()
+            while((line=in.readLine())!=null){
+                parts.add(line); //comma separator
+            }
+            try {
+                for (String part : parts) {
+                    contents = Arrays.asList(part.split(",",FILE_SIZE_RATINGS));
+                    int MovieID = Integer.parseInt(contents.get(0));
+                    int Rating = Integer.parseInt(contents.get(1));
+                    int TimeStamp = Integer.parseInt(contents.get(2));
+                    int UserID = Integer.parseInt(contents.get(3));
+                    Ratings newRating = new Ratings(MovieID,Rating,TimeStamp,UserID);
+                    Gson gson = new Gson();
+                    String JSON = gson.toJson(newRating);
+                    count++;
+                    if(count==10000){
+                        jw.JSONEnder();
+                        count=0;
+                        file++;
+                        jw= new JSONwriter(file,DESCRIPTION);
+                    }
+                    jw.write(JSON);
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
 
         }catch(Exception e){
             e.printStackTrace();
