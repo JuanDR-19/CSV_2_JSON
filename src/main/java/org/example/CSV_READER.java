@@ -13,6 +13,7 @@ import java.util.List;
 public class CSV_READER {
 
     private static final String ListSplitter="!";
+    private static final int FILE_SIZE=7;
     private String line=null;
 
     private List<String> parts = new ArrayList<>();
@@ -43,7 +44,7 @@ public class CSV_READER {
                     contents = Arrays.asList(part.split(","));
 
                     //System.out.println(contents.size());
-                    if (contents.size() != 7) {
+                    if (contents.size() != FILE_SIZE) {
                         MovID = Integer.valueOf(contents.get(0));
                         Name = contents.get(1);
                         String linea = contents.get(2);
