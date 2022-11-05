@@ -8,27 +8,28 @@ import java.io.PrintWriter;
 import java.util.List;
 
 public class JSONwriter {
-    private static final String PATH = "/Users/juanmanuelduran/Desktop/Movies/DescripcionPeliculas.JSON";
-    private PrintWriter out = new PrintWriter(new FileWriter(PATH));
+    private static final String PATH = "/Users/juanmanuelduran/Desktop/Movies/DescripcionPeliculas";
+    private static final String EXTENTION = ".JSON";
+    private PrintWriter out;
 
 
 
-    public JSONwriter() throws IOException {
+    public JSONwriter(int file) throws IOException {
+        this.out= new PrintWriter(new FileWriter(PATH+file+EXTENTION));
         out.write("[\n");
     }
 
-    public void write(List<String> File_data) {
-        for(String JSON : File_data){
+    public void write(String line) {
             try {
-                out.write("\t"+JSON);
-                out.write(",");
-                out.write("\n");
+                this.out.write("\t"+line);
+                this.out.write(",");
+                this.out.write("\n");
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
     }
     public void JSONEnder(){
         out.write("]");
+        this.out.close();
     }
 }

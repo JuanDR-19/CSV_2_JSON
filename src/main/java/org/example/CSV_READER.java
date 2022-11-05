@@ -16,14 +16,15 @@ public class CSV_READER {
 
     private List<String> parts = new ArrayList<>();
     private List<String> contents = new ArrayList<>();
-    private List<String> File_data = new ArrayList<>();
-    private JSONwriter JW = new JSONwriter();
 
 
     public CSV_READER() throws IOException {
     }
 
-    public void readFileMovies(String path){
+    public void readFileMovies(String path) throws IOException {
+        int cont=0;
+        int file=0;
+        JSONwriter jw= new JSONwriter(file);
         try (BufferedReader in = new BufferedReader(new FileReader(path))) { //filename in()
 
             while((line=in.readLine())!=null){
@@ -86,18 +87,22 @@ public class CSV_READER {
                     }else{
                         Genres.add(Subject);
                     }
-
                     Movie newMovie = new Movie(MovID, Name, Screenwriter, Subjects, Directors, Actors, Genres);
                     Gson gson = new Gson();
                     String JSON = gson.toJson(newMovie);
-                    File_data.add(JSON);
+                    cont++;
+                    if(cont==10000){
+                        jw.JSONEnder();
+                        cont=0;
+                        file++;
+                        jw= new JSONwriter(file);
+                    }
+                    jw.write(JSON);
                 }
             }catch(Exception e){
                 e.printStackTrace();
             }
-            JW.write(File_data);
-            //System.out.println(File_data.size());
-            JW.JSONEnder();
+
 
         }catch(Exception e){
             e.printStackTrace();
