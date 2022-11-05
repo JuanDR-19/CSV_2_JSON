@@ -6,9 +6,12 @@ import org.example.Interfaces.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.sql.Timestamp;
+import java.util.Date;
 public class CSV_READER implements MoviesInterface, RatingsInterface{
 
     private static final String LIST_SPLITTER="!";
@@ -128,9 +131,10 @@ public class CSV_READER implements MoviesInterface, RatingsInterface{
                     contents = Arrays.asList(part.split(",",FILE_SIZE_RATINGS));
                     int MovieID = Integer.parseInt(contents.get(0));
                     float Rating = Float.parseFloat(contents.get(1));
-                    int TimeStamp = Integer.parseInt(contents.get(2));
+                    Timestamp timestamp = Timestamp.valueOf(contents.get(2));
+                    Date date=new Date(timestamp.getTime());
                     int UserID = Integer.parseInt(contents.get(3));
-                    Ratings newRating = new Ratings(MovieID,Rating,TimeStamp,UserID);
+                    Ratings newRating = new Ratings(MovieID,Rating,date,UserID);
                     Gson gson = new Gson();
                     String JSON = gson.toJson(newRating);
                     count++;
