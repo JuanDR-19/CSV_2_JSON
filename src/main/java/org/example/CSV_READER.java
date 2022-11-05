@@ -1,7 +1,10 @@
 package org.example;
 
+import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,9 +18,10 @@ public class CSV_READER {
     private List<String> parts = new ArrayList<>();
     private List<Movie> Movies = new ArrayList<>();
     private List<String> contents = new ArrayList<>();
+    private JSONwriter JW = new JSONwriter();
 
 
-    public CSV_READER() {
+    public CSV_READER() throws IOException {
     }
 
     public void readFileMovies(String path){
@@ -131,11 +135,16 @@ public class CSV_READER {
                     }
                     Movie newMovie = new Movie(MovID, Name, Screenwriter, Subjects, Directors, Actors, Genres);
                     Movies.add(newMovie);
+                    Gson gson = new Gson();
+                    String JSON = gson.toJson(newMovie);
+                    JW.write(JSON);
+
                 }
             }catch(Exception e){
                 e.printStackTrace();
             }
             //ReadList();
+
             System.out.println(Movies.size());
         }catch(Exception e){
             e.printStackTrace();
