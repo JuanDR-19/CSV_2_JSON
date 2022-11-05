@@ -9,8 +9,10 @@ public class JSONwriter {
     private static final String PATH = "/Users/juanmanuelduran/Desktop/Movies/DescripcionPeliculas.JSON";
     private PrintWriter out = new PrintWriter(new FileWriter(PATH));
 
+
+
     public JSONwriter() throws IOException {
-        out.write("{\n");
+        out.write("[\n");
     }
 
     public void write(String JSON){
@@ -24,7 +26,7 @@ public class JSONwriter {
     }
 
     public void JSONEnder(){
-        out.write("\n}");
+        out.write("]");
     }
 }
 
