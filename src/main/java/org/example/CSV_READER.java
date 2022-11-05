@@ -39,53 +39,53 @@ public class CSV_READER {
                     List<String> Genres = new ArrayList<>();
                     String Name = null;
                     contents = Arrays.asList(part.split(",",FILE_SIZE));
-                        MovID = Integer.valueOf(contents.get(0));
-                        Name = contents.get(1);
+                    MovID = Integer.valueOf(contents.get(0));
+                    Name = contents.get(1);
 
-                        String linea = contents.get(2);
-                        if(linea.contains(LIST_SPLITTER)){
-                            Screenwriter = List.of(linea.split(LIST_SPLITTER));
-                        }else if(linea.isEmpty()){
-                            Screenwriter=null;
-                        }else {
-                            Screenwriter.add(linea);
-                        }
+                    String linea = contents.get(2);
+                    if(linea.contains(LIST_SPLITTER)){
+                        Screenwriter = List.of(linea.split(LIST_SPLITTER));
+                    }else if(linea.isEmpty()){
+                        Screenwriter=null;
+                    }else {
+                        Screenwriter.add(linea);
+                    }
 
-                        String Subject = contents.get(3); //list
-                        if(Subject.contains(LIST_SPLITTER)){
-                            Subjects = List.of(Subject.split(LIST_SPLITTER));
-                        }else if(Subject.isEmpty()){
-                            Subjects=null;
-                        }else{
-                            Subjects.add(Subject);
-                        }
+                    String Subject = contents.get(3); //list
+                    if(Subject.contains(LIST_SPLITTER)){
+                        Subjects = List.of(Subject.split(LIST_SPLITTER));
+                    }else if(Subject.isEmpty()){
+                        Subjects=null;
+                    }else{
+                        Subjects.add(Subject);
+                    }
 
-                        String Director = contents.get(4); //list
-                        if(Director.contains(LIST_SPLITTER)){
-                            Directors = List.of(Director.split(LIST_SPLITTER));
-                        }else if(Director.isEmpty()){
-                            Directors=null;
-                        }else{
-                            Directors.add(Director);
-                        }
+                    String Director = contents.get(4); //list
+                    if(Director.contains(LIST_SPLITTER)){
+                        Directors = List.of(Director.split(LIST_SPLITTER));
+                    }else if(Director.isEmpty()){
+                        Directors=null;
+                    }else{
+                        Directors.add(Director);
+                    }
 
-                        String Actor = contents.get(5); //list
-                        if(Actor.contains(LIST_SPLITTER)){
-                            Actors = List.of(Actor.split(LIST_SPLITTER));
-                        }else if(Actor.isEmpty()){
-                            Actors=null;
-                        }else{
-                            Actors.add(Actor);
-                        }
+                    String Actor = contents.get(5); //list
+                    if(Actor.contains(LIST_SPLITTER)){
+                        Actors = List.of(Actor.split(LIST_SPLITTER));
+                    }else if(Actor.isEmpty()){
+                        Actors=null;
+                    }else{
+                        Actors.add(Actor);
+                    }
 
-                        String Genre = contents.get(6); //list
-                        if(Genre.contains(LIST_SPLITTER)){
-                            Genres = List.of(Genre.split(LIST_SPLITTER));
-                        }else if(Genre.isEmpty()){
-                            Genres=null;
-                        }else{
-                            Genres.add(Subject);
-                        }
+                    String Genre = contents.get(6); //list
+                    if(Genre.contains(LIST_SPLITTER)){
+                        Genres = List.of(Genre.split(LIST_SPLITTER));
+                    }else if(Genre.isEmpty()){
+                        Genres=null;
+                    }else{
+                        Genres.add(Subject);
+                    }
 
                     Movie newMovie = new Movie(MovID, Name, Screenwriter, Subjects, Directors, Actors, Genres);
                     Gson gson = new Gson();

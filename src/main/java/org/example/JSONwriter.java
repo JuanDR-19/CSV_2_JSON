@@ -32,4 +32,3 @@ public class JSONwriter {
         out.write("]");
     }
 }
-
