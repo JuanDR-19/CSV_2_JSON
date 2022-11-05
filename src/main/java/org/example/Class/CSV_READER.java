@@ -127,7 +127,7 @@ public class CSV_READER implements MoviesInterface, RatingsInterface{
                 for (String part : parts) {
                     contents = Arrays.asList(part.split(",",FILE_SIZE_RATINGS));
                     int MovieID = Integer.parseInt(contents.get(0));
-                    float Rating = Integer.parseInt(contents.get(1));
+                    float Rating = Float.parseFloat(contents.get(1));
                     int TimeStamp = Integer.parseInt(contents.get(2));
                     int UserID = Integer.parseInt(contents.get(3));
                     Ratings newRating = new Ratings(MovieID,Rating,TimeStamp,UserID);
