@@ -8,11 +8,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-
 public class CSV_READER {
 
-    private static final String ListSplitter="!";
+    private static final String LIST_SPLITTER="!";
     private static final int FILE_SIZE=7;
     private String line=null;
 
@@ -45,8 +43,8 @@ public class CSV_READER {
                         Name = contents.get(1);
 
                         String linea = contents.get(2);
-                        if(linea.contains(ListSplitter)){
-                            Screenwriter = List.of(linea.split(ListSplitter));
+                        if(linea.contains(LIST_SPLITTER)){
+                            Screenwriter = List.of(linea.split(LIST_SPLITTER));
                         }else if(linea.isEmpty()){
                             Screenwriter=null;
                         }else {
@@ -54,8 +52,8 @@ public class CSV_READER {
                         }
 
                         String Subject = contents.get(3); //list
-                        if(Subject.contains(ListSplitter)){
-                            Subjects = List.of(Subject.split(ListSplitter));
+                        if(Subject.contains(LIST_SPLITTER)){
+                            Subjects = List.of(Subject.split(LIST_SPLITTER));
                         }else if(Subject.isEmpty()){
                             Subjects=null;
                         }else{
@@ -63,8 +61,8 @@ public class CSV_READER {
                         }
 
                         String Director = contents.get(4); //list
-                        if(Director.contains(ListSplitter)){
-                            Directors = List.of(Director.split(ListSplitter));
+                        if(Director.contains(LIST_SPLITTER)){
+                            Directors = List.of(Director.split(LIST_SPLITTER));
                         }else if(Director.isEmpty()){
                             Directors=null;
                         }else{
@@ -72,8 +70,8 @@ public class CSV_READER {
                         }
 
                         String Actor = contents.get(5); //list
-                        if(Actor.contains(ListSplitter)){
-                            Actors = List.of(Actor.split(ListSplitter));
+                        if(Actor.contains(LIST_SPLITTER)){
+                            Actors = List.of(Actor.split(LIST_SPLITTER));
                         }else if(Actor.isEmpty()){
                             Actors=null;
                         }else{
@@ -81,8 +79,8 @@ public class CSV_READER {
                         }
 
                         String Genre = contents.get(6); //list
-                        if(Genre.contains(ListSplitter)){
-                            Genres = List.of(Genre.split(ListSplitter));
+                        if(Genre.contains(LIST_SPLITTER)){
+                            Genres = List.of(Genre.split(LIST_SPLITTER));
                         }else if(Genre.isEmpty()){
                             Genres=null;
                         }else{
