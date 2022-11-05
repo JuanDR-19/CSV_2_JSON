@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 public class JSONwriter {
-    private static final String PATH = "/Users/juanmanuelduran/Desktop/Movies/";
+    private static final String PATH = "C:\\Users\\rueda\\Desktop\\Juan\\Movies\\Movies\\";
     private static final String EXTENTION = ".JSON";
     private PrintWriter out;
 

@@ -131,7 +131,7 @@ public class CSV_READER implements MoviesInterface, RatingsInterface{
                     contents = Arrays.asList(part.split(",",FILE_SIZE_RATINGS));
                     int MovieID = Integer.parseInt(contents.get(0));
                     float Rating = Float.parseFloat(contents.get(1));
-                    Timestamp timestamp = Timestamp.valueOf(contents.get(2));
+                    Timestamp timestamp = new Timestamp(Long.parseLong(contents.get(2)));
                     Date date=new Date(timestamp.getTime());
                     int UserID = Integer.parseInt(contents.get(3));
                     Ratings newRating = new Ratings(MovieID,Rating,date,UserID);
