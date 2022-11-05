@@ -118,7 +118,7 @@ public class CSV_READER implements MoviesInterface, RatingsInterface{
     public void readFileRating(String path) throws IOException {
         int count=0;
         int file=0;
-        JSONwriter jw= new JSONwriter(file,DESCRIPTION);
+        JSONwriter jw= new JSONwriter(file,RATING);
         try (BufferedReader in = new BufferedReader(new FileReader(path))) { //filename in()
             while((line=in.readLine())!=null){
                 parts.add(line); //comma separator
@@ -127,25 +127,24 @@ public class CSV_READER implements MoviesInterface, RatingsInterface{
                 for (String part : parts) {
                     contents = Arrays.asList(part.split(",",FILE_SIZE_RATINGS));
                     int MovieID = Integer.parseInt(contents.get(0));
-                    int Rating = Integer.parseInt(contents.get(1));
+                    float Rating = Integer.parseInt(contents.get(1));
                     int TimeStamp = Integer.parseInt(contents.get(2));
                     int UserID = Integer.parseInt(contents.get(3));
                     Ratings newRating = new Ratings(MovieID,Rating,TimeStamp,UserID);
                     Gson gson = new Gson();
                     String JSON = gson.toJson(newRating);
                     count++;
-                    if(count==10000){
+                    if(count==20000){
                         jw.JSONEnder();
                         count=0;
                         file++;
-                        jw= new JSONwriter(file,DESCRIPTION);
+                        jw= new JSONwriter(file,RATING);
                     }
                     jw.write(JSON);
                 }
             }catch(Exception e){
                 e.printStackTrace();
             }
-
         }catch(Exception e){
             e.printStackTrace();
         }
