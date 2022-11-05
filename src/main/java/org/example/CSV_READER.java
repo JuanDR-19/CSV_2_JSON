@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CSV_READER {
 
-    private static final String ListSplitter="_";
+    private static final String ListSplitter="!";
     private String line=null;
 
     private List<String> parts = new ArrayList<>();
@@ -135,7 +135,8 @@ public class CSV_READER {
             }catch(Exception e){
                 e.printStackTrace();
             }
-            ReadList();
+            //ReadList();
+            System.out.println(Movies.size());
         }catch(Exception e){
             e.printStackTrace();
         }
