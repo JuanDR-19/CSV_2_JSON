@@ -43,7 +43,7 @@ public class CSV_READER {
                     contents = Arrays.asList(part.split(","));
 
                     //System.out.println(contents.size());
-                    if (contents.size() == 6) {
+                    if (contents.size() != 7) {
                         MovID = Integer.valueOf(contents.get(0));
                         Name = contents.get(1);
                         String linea = contents.get(2);
