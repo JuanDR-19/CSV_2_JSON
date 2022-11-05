@@ -22,7 +22,7 @@ public class CSV_READER {
     }
 
     public void readFileMovies(String path) throws IOException {
-        int cont=0;
+        int count=0;
         int file=0;
         JSONwriter jw= new JSONwriter(file);
         try (BufferedReader in = new BufferedReader(new FileReader(path))) { //filename in()
@@ -90,10 +90,10 @@ public class CSV_READER {
                     Movie newMovie = new Movie(MovID, Name, Screenwriter, Subjects, Directors, Actors, Genres);
                     Gson gson = new Gson();
                     String JSON = gson.toJson(newMovie);
-                    cont++;
-                    if(cont==10000){
+                    count++;
+                    if(count==10000){
                         jw.JSONEnder();
-                        cont=0;
+                        count=0;
                         file++;
                         jw= new JSONwriter(file);
                     }
